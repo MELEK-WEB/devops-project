@@ -1,0 +1,41 @@
+version: '3'
+services:
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8080:8080"
+    networks:
+      - backend-network
+    # Add any other configurations for your backend service
+
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - frontnetwork
+    # Add any other configurations for your frontend service
+
+  # MongoDB service
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-data:/data/db
+    
+    networks:
+      - backend-network
+    # Add any other configurations for your MongoDB service
+
+networks:
+  frontnetwork:
+    driver: bridge
+  backend-network:
+    driver: bridge
