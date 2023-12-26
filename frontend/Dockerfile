@@ -1,26 +1,14 @@
-# Use an official Node.js Alpine image as a parent image
-FROM node:14-alpine
+# Stage 1: Build the React app
+FROM node:18 AS build
+WORKDIR /app
+COPY ./frontend/package*.json ./
+RUN npm install
+COPY ./frontend/ ./
+RUN npm run build
 
-
-RUN addgroup  app && adduser -S -G app app
-
-USER app
-
-
-# Set the working directory in the container
-WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json (if available)
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install --force 
-
-# Copy all local files into the image
-COPY . .
-
-# Expose the port your app runs on (e.g., 3000)
+# Stage 2: Serve the React app using Nginx
+FROM nginx:1.21
+COPY --from=build /app/build /usr/share/nginx/html
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 3000
-
-# Define the command to run your app
-CMD ["npm", "start"]  
+CMD ["nginx", "-g", "daemon off;"]
