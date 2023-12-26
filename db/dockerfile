@@ -9,7 +9,7 @@ ENV MONGO_INITDB_ROOT_USERNAME=admin00
 ENV MONGO_INITDB_ROOT_PASSWORD=admin00
 ENV MONGO_INITDB_DATABASE=docker-mern-mongo
 
-EXPOSE 27018
+EXPOSE 27017
 
 # Start MongoDB with the entrypoint script from the base image
 CMD ["mongod"]

@@ -20,7 +20,7 @@ import reportWebVitals from './reportWebVitals';
 // ==============================|| MAIN - REACT DOM RENDER  ||============================== //
 
 const container = document.getElementById('root');
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
+const root = createRoot(container); 
 
 const queryClient = new QueryClient();
 
@@ -29,7 +29,7 @@ root.render(
     <ReduxProvider store={store}>
       <BrowserRouter basename="/booking">
       <QueryClientProvider client={queryClient}>
-          <App/>
+          <App/> 
           <ReactQueryDevtools initialIsOpen /> 
         </QueryClientProvider>
       </BrowserRouter>
