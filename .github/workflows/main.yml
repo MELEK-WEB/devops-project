@@ -16,12 +16,12 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '17'
 
     - name: Install dependencies and build
       run: |
         cd frontend
-        npm install force
+        npm install --legacy-peer-deps
         
 
     - name: Archive build artifacts
