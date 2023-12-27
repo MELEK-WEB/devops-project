@@ -21,7 +21,7 @@ const App = () => {
   useEffect(() => {
     dispatch(GetUserByToken());
   }, [dispatch]);
-  console.log("make pipline");
+ 
   const { loading } = useSelector((state) => state.auth);
 
   if (loading) {
