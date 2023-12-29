@@ -12,7 +12,7 @@ pipeline {
                     echo 'Checking out code...'
                     git url: 'https://github.com/MELEK-WEB/devops-project.git', branch: 'melek'
                     echo 'Building application...'
-                    sh 'docker-compose -f docker-compose.yml build'
+                    sh './docker-compose build'
                 }
             }
         }
