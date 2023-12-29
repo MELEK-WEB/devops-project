@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Backend') {
+            steps {
+                script {
+                    git 'https://github.com/MELEK-WEB/devops-project.git'
+                    dir('backend') {
+                        sh 'docker-compose build backend'
+                    }
+                }
+            }
+        }
+    }
+}
