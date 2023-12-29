@@ -9,7 +9,7 @@ pipeline {
         stage('Build Application') {
             steps {
                 script {
-                    git 'https://github.com/MELEK-WEB/devops-project.git'
+                    git url: 'https://github.com/MELEK-WEB/devops-project.git', branch: 'melek'
                     sh 'docker-compose -f docker-compose.yml build'
                 }
             }
