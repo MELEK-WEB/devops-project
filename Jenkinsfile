@@ -6,13 +6,22 @@ pipeline {
     }
 
     stages {
+        stage('Debug Environment') {
+            steps {
+                script {
+                    sh 'echo $PATH'
+                }
+            }
+        }
+
         stage('Build Application') {
             steps {
                 script {
-                    echo 'Checking out code...'
                     git url: 'https://github.com/MELEK-WEB/devops-project.git', branch: 'melek'
-                    echo 'Building application...'
-                    sh './docker-compose build'
+                   
+                        // Assuming 'docker-compose' is executable (chmod +x)
+                        sh './docker-compose build'
+                    
                 }
             }
         }
