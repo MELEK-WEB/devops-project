@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        // Trigger the pipeline on merges to the "melek" branch
-        scm('*/melek')
+        pollSCM('H/15 * * * *') // Polls the SCM every 15 minutes (adjust as needed)
     }
 
     stages {
